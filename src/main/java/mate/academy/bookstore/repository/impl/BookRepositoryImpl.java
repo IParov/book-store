@@ -4,7 +4,6 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.criteria.CriteriaQuery;
 import java.util.List;
 import java.util.Optional;
-
 import mate.academy.bookstore.exception.EntityNotFoundException;
 import mate.academy.bookstore.model.Book;
 import mate.academy.bookstore.repository.AbstractRepository;
