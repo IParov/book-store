@@ -23,10 +23,6 @@ public class Book {
     private String description;
     private String coverImage;
 
-    public Book() {
-
-    }
-
     public Long getId() {
         return id;
     }
