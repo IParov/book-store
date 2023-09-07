@@ -16,10 +16,11 @@ public class User {
     private String email;
     @Column(nullable = false)
     private String password;
-    @Column(nullable = false)
+    @Column(nullable = false, name = "first_name")
     private String firstName;
-    @Column(nullable = false)
+    @Column(nullable = false, name = "last_name")
     private String lastName;
+    @Column(name = "shipping_address")
     private String shippingAddress;
     @Column(name = "is_deleted")
     private boolean isDeleted;
