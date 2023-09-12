@@ -1,0 +1,13 @@
+databaseChangeLog:
+  - changeSet:
+      id: add-roles
+      author: IP
+      changes:
+        - sql:
+            dbms: mysql
+            sql: |
+              INSERT INTO roles (role_name) VALUES ('ROLE_ADMIN');
+        - sql:
+            dbms: mysql
+            sql: |
+              INSERT INTO roles (role_name) VALUES ('ROLE_USER');
