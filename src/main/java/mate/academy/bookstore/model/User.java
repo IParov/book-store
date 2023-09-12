@@ -1,14 +1,12 @@
 package mate.academy.bookstore.model;
 
+import java.util.Collection;
+import java.util.Set;
 import jakarta.persistence.*;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
-import java.util.Collection;
-import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -31,6 +29,21 @@ public class User implements UserDetails {
     @Column(name = "is_deleted")
     private boolean isDeleted;
 
+    @Column(nullable = false)
+    @OneToMany
+    @JoinTable(name = "users_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "roles_id"))
+    private Set<Role> roles;
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
     public Long getId() {
         return id;
     }
@@ -49,7 +62,7 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority("ROLE_USER"));
+        return roles;
     }
 
     public String getPassword() {
