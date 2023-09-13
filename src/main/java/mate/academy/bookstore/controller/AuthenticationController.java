@@ -8,7 +8,6 @@ import mate.academy.bookstore.dto.user.UserDto;
 import mate.academy.bookstore.dto.user.UserLoginDto;
 import mate.academy.bookstore.dto.user.UserLoginRequestDto;
 import mate.academy.bookstore.dto.user.UserRegistrationRequestDto;
-import mate.academy.bookstore.exception.RegistrationException;
 import mate.academy.bookstore.security.AuthenticationService;
 import mate.academy.bookstore.service.UserService;
 import org.springframework.web.bind.annotation.*;
@@ -28,8 +27,7 @@ public class AuthenticationController {
 
     @PostMapping("/register")
     @Operation(summary = "Register a new user", description = "Registering new user")
-    public UserDto register(@RequestBody @Valid UserRegistrationRequestDto requestDto)
-            throws RegistrationException {
+    public UserDto register(@RequestBody @Valid UserRegistrationRequestDto requestDto) {
        return userService.register(requestDto);
     }
 }
