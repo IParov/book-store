@@ -10,7 +10,10 @@ import mate.academy.bookstore.dto.user.UserLoginRequestDto;
 import mate.academy.bookstore.dto.user.UserRegistrationRequestDto;
 import mate.academy.bookstore.security.AuthenticationService;
 import mate.academy.bookstore.service.UserService;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @Tag(name = "User management", description = "Endpoints for managing users")
 @RequiredArgsConstructor
@@ -21,6 +24,7 @@ public class AuthenticationController {
     private final AuthenticationService authenticationService;
 
     @PostMapping("/login")
+    @Operation(summary = "User login", description = "logging user")
     public UserLoginDto login(@RequestBody UserLoginRequestDto requestDto) {
         return authenticationService.authenticate(requestDto);
     }
@@ -28,6 +32,6 @@ public class AuthenticationController {
     @PostMapping("/register")
     @Operation(summary = "Register a new user", description = "Registering new user")
     public UserDto register(@RequestBody @Valid UserRegistrationRequestDto requestDto) {
-       return userService.register(requestDto);
+        return userService.register(requestDto);
     }
 }

@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 public class AuthenticationService {
     private final JwtUtil jwtUtil;
     private final AuthenticationManager authenticationManager;
+
     public UserLoginDto authenticate(UserLoginRequestDto requestDto) {
         final Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(requestDto.email(), requestDto.password()));
