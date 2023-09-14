@@ -17,7 +17,6 @@ import mate.academy.bookstore.validation.FieldsValueMatch;
 public class UserRegistrationRequestDto {
     @Email
     @NotBlank
-    @Size(min = 8, max = 20)
     private String email;
     @NotBlank
     @Size(min = 8, max = 20)
