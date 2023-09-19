@@ -10,5 +10,5 @@ import org.mapstruct.Mapper;
 public interface UserMapper {
     UserDto toDto(User user);
 
-    User toModel(UserRegistrationRequestDto requestDto);
+    User toEntity(UserRegistrationRequestDto requestDto);
 }

@@ -20,6 +20,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
+@Getter
+@Setter
 @NoArgsConstructor
 @Table(name = "users")
 @SQLDelete(sql = "UPDATE users SET is_deleted = true WHERE id=?")
@@ -31,33 +33,18 @@ public class User implements UserDetails {
     @Setter
     private Long id;
     @Column(nullable = false, unique = true)
-    @Getter
-    @Setter
     private String email;
     @Column(nullable = false)
-    @Getter
-    @Setter
     private String password;
     @Column(nullable = false, name = "first_name")
-    @Getter
-    @Setter
     private String firstName;
     @Column(nullable = false, name = "last_name")
-    @Getter
-    @Setter
     private String lastName;
     @Column(name = "shipping_address")
-    @Getter
-    @Setter
     private String shippingAddress;
     @Column(name = "is_deleted")
-    @Getter
-    @Setter
     private boolean isDeleted;
-
     @Column(nullable = false)
-    @Getter
-    @Setter
     @OneToMany
     @JoinTable(name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id"),
