@@ -1,7 +1,6 @@
 package mate.academy.bookstore.service.impl;
 
 import java.util.List;
-import java.util.Set;
 import lombok.RequiredArgsConstructor;
 import mate.academy.bookstore.dto.book.BookDto;
 import mate.academy.bookstore.dto.book.BookDtoWithoutCategoryIds;
@@ -10,7 +9,6 @@ import mate.academy.bookstore.dto.book.CreateBookRequestDto;
 import mate.academy.bookstore.exception.EntityNotFoundException;
 import mate.academy.bookstore.mapper.BookMapper;
 import mate.academy.bookstore.model.Book;
-import mate.academy.bookstore.model.Category;
 import mate.academy.bookstore.repository.book.BookRepository;
 import mate.academy.bookstore.repository.book.specification.builder.BookSpecificationBuilder;
 import mate.academy.bookstore.repository.category.CategoryRepository;
@@ -30,8 +28,6 @@ public class BookServiceImpl implements BookService {
     @Override
     public BookDto save(CreateBookRequestDto requestDto) {
         Book book = bookMapper.toEntity(requestDto);
-        Set<Category> categories = categoryRepository.findAllByIdIn(requestDto.getCategoryIds());
-        book.setCategories(categories);
         return bookMapper.toDto(bookRepository.save(book));
     }
 
