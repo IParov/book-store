@@ -6,6 +6,7 @@ import mate.academy.bookstore.dto.category.CreateCategoryRequestDto;
 import org.springframework.data.domain.Pageable;
 
 public interface CategoryService {
+
     List<CategoryDto> findAll(Pageable pageable);
 
     CategoryDto findById(Long id);

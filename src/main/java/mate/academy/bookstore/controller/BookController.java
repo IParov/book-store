@@ -12,7 +12,6 @@ import mate.academy.bookstore.service.BookService;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -46,7 +45,6 @@ public class BookController {
     }
 
     @GetMapping
-    @Transactional
     @PreAuthorize("hasRole('ROLE_USER')")
     @Operation(summary = "Get all books", description = "Get a list of available books")
     public List<BookDto> findAll(Pageable pageable) {
@@ -54,7 +52,6 @@ public class BookController {
     }
 
     @GetMapping("/{id}")
-    @Transactional
     @PreAuthorize("hasRole('ROLE_USER')")
     @Operation(summary = "Get book", description = "Get book by Id")
     public BookDto findById(@PathVariable Long id) {
@@ -70,7 +67,6 @@ public class BookController {
     }
 
     @GetMapping("/search")
-    @Transactional
     @PreAuthorize("hasRole('ROLE_USER')")
     @Operation(summary = "Get books with parameters",
             description = "Get a list of books using special parameters")
