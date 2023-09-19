@@ -24,7 +24,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @Tag(name = "Book management", description = "Endpoints for managing books")
-@Transactional
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/books")
@@ -47,6 +46,7 @@ public class BookController {
     }
 
     @GetMapping
+    @Transactional
     @PreAuthorize("hasRole('ROLE_USER')")
     @Operation(summary = "Get all books", description = "Get a list of available books")
     public List<BookDto> findAll(Pageable pageable) {
@@ -54,6 +54,7 @@ public class BookController {
     }
 
     @GetMapping("/{id}")
+    @Transactional
     @PreAuthorize("hasRole('ROLE_USER')")
     @Operation(summary = "Get book", description = "Get book by Id")
     public BookDto findById(@PathVariable Long id) {
@@ -69,6 +70,7 @@ public class BookController {
     }
 
     @GetMapping("/search")
+    @Transactional
     @PreAuthorize("hasRole('ROLE_USER')")
     @Operation(summary = "Get books with parameters",
             description = "Get a list of books using special parameters")
