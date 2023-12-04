@@ -11,6 +11,7 @@ import mate.academy.bookstore.model.Role;
 import mate.academy.bookstore.model.User;
 import mate.academy.bookstore.repository.role.RoleRepository;
 import mate.academy.bookstore.repository.user.UserRepository;
+import mate.academy.bookstore.service.ShoppingCartService;
 import mate.academy.bookstore.service.UserService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,7 @@ public class UserServiceImpl implements UserService {
     private static final Long USER_ROLE = 2L;
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
+    private final ShoppingCartService shoppingCartService;
     private final UserMapper userMapper;
     private final PasswordEncoder passwordEncoder;
 
@@ -39,6 +41,7 @@ public class UserServiceImpl implements UserService {
                 () -> new EntityNotFoundException("Can't find role for user"));
         user.setRoles(Set.of(role));
         User savedUser = userRepository.save(user);
+        shoppingCartService.addShoppingCart(savedUser);
         return userMapper.toDto(savedUser);
     }
 }
