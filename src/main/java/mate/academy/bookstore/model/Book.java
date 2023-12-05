@@ -46,4 +46,8 @@ public class Book {
             joinColumns = @JoinColumn(name = "book_id"),
             inverseJoinColumns = @JoinColumn(name = "categories_id"))
     private Set<Category> categories;
+
+    public Book(Long bookId) {
+
+    }
 }
